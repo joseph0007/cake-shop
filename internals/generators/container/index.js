@@ -59,6 +59,12 @@ module.exports = {
       default: true,
       message: 'Do you want to load resources asynchronously?',
     },
+    {
+      type: 'confirm',
+      name: 'wantSass',
+      default: true,
+      message: 'Do you want a sass file?',
+    },
   ],
   actions: data => {
     // Generate index.js and index.test.js
@@ -163,6 +169,16 @@ module.exports = {
         type: 'add',
         path: '../../app/containers/{{properCase name}}/Loadable.js',
         templateFile: './component/loadable.js.hbs',
+        abortOnFail: true,
+      });
+    }
+
+    // SASS
+    if (data.wantSass) {
+      actions.push({
+        type: 'add',
+        path: '../../app/containers/{{properCase name}}/sass.scss',
+        templateFile: './container/sass.scss.hbs',
         abortOnFail: true,
       });
     }

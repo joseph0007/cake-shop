@@ -1,0 +1,32 @@
+.feature-box {
+    padding: 2.5rem;
+    font-size: 1.5rem;
+    background-color: rgba($light-text-color, 0.8);
+    text-align: center;
+    border-radius: .5rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    @include respond(tab-land) {
+        padding: 1.5rem;
+    }
+
+    &__icon-font {
+        display: inline-block;
+        font-size: 6rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(to right, $color-light, $color-dark);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+
+        @include respond(tab-port) {
+            margin-bottom: 0;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+        box-shadow: 0 2rem 5rem rgba($color-black, 0.6);
+    }
+}

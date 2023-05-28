@@ -1,0 +1,99 @@
+//we put section-about in the home.scss is because this page is very specific to this website and cannot be used anywhere else!!
+.section-about {
+    background-color: $color-light-grey-1;
+    //to cover out the bottom re
+    padding: 17vh 0 19rem 0;
+    margin-top: -17vh;
+
+    @include respond(tab-port) {
+        padding: 22vh 0 19rem 0;
+    }
+
+}
+
+.section-features {
+    padding: 15rem 0;
+    background-image: linear-gradient(to bottom right, rgba($color-light, 0.8), rgba($color-dark, 0.8));// url(../img/nat-4.jpg);
+    background-position: cover;
+    margin-top: -10rem;
+    transform: skewY(-7deg);
+
+    @include respond(tab-port) {
+        padding: 11rem 0;
+    }
+
+    //">" operator is used to select the second selector that is direct child of the first selector!!!
+    //it is called as child selector!!
+    & > *{
+        transform: skewY(7deg);
+    }
+}
+
+.section-tours {
+    padding: 20rem 0 15rem 0;
+    margin-top: -9rem;
+    background-color: $color-light-grey-1;
+
+    @include respond(tab-port) {
+        padding: 15rem 0 10rem 0;
+    }
+
+}
+
+.section-stories {
+    padding: 12rem 0;
+    position: relative;
+
+    @include respond(tab-port) {
+        padding: 7rem 0;
+    }
+}
+
+.section-form {
+    padding: 15rem 0;
+    background-image: linear-gradient(to bottom right, $color-light, $color-dark);
+}
+
+.book {
+    //understood the percentage part very well it the percentage of the container!!!
+    background-image: linear-gradient(75deg,
+    rgba($light-text-color, 0.8) 0%,
+    rgba($light-text-color, 0.8) 50%,
+    transparent 50%);
+    // url(../img/nat-10.jpg);
+    //you can also give background size in percentage and if the size is too small for the container then it starts to repeat itself to fill the 
+    //container!!!
+    //background-size: 25%;
+    background-size: cover;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.2);
+
+    @include respond(tab-land) {
+        background-image: linear-gradient(75deg,
+        rgba($light-text-color, 0.8) 0%,
+        rgba($light-text-color, 0.8) 65%,
+        transparent 65%);
+        // url(../img/nat-10.jpg);
+    }
+
+    @include respond(tab-port) {
+        background-image: linear-gradient(75deg,
+        rgba($light-text-color, 0.8) 0%,
+        rgba($light-text-color, 0.8) 100%);
+        // url(../img/nat-10.jpg);
+    }
+
+    &__form {
+        width: 50%;
+        padding: 3rem;
+
+        @include respond(tab-land) {
+            width: 65%;
+        }
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+    }
+
+}

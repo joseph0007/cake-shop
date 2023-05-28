@@ -1,0 +1,253 @@
+.card {
+
+    // FUNCTIONALITY
+    position: relative;
+    height: 53rem;
+    //perspective needs to  be given on the parent element that contains the element that is being transformed!!
+    //the lower the value given to perspective the more dramatic effect its produces as i think its emulating the distance from the screen
+    //to the page and so lower the value closer we are to the page and vice versa!!
+    perspective: 150rem;
+    -moz-perspective: 150rem;
+
+    &__side {
+        height: 53rem;
+        transition: all .8s ease;
+        //when we give position absolute to an element it gets taken out of its normal flow and so the browser does not 
+        //considers its height as part of its parent element and so the height of the parent element collapses to zero and 
+        //unlike floats we cannot use clearfix class to fix it hence we have to give the same height of the child element to its
+        //parent element.!!! 
+        //it also collapses its width to only accomodate its content and hence we have to set its width manually
+        //basically its acts like a inline block!!
+        position: absolute;
+        width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: .5rem;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+        overflow: hidden;
+
+        &--front {
+            top: 0;
+            left: 0;
+
+            &--first,
+            &--second,
+            &--third {
+                background-color: $light-text-color; 
+            }
+
+        }
+
+        &--back {
+            //to properply implement the card trick
+            transform: rotateY(-180deg);
+            top: 0;
+            left: 0;
+
+            &--first {
+                background-image: linear-gradient(to bottom right, $color-secondary-light, $color-secondary-dark);
+            }
+
+            &--second {
+                background-image: linear-gradient(to bottom right, $color-light, $color-dark);
+            }
+
+            &--third {
+                background-image: linear-gradient(to bottom right, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+
+    &:hover &__side--front{
+        transform: rotateY(180deg);
+    }
+
+    &:hover &__side--back{
+        transform: rotateY(0deg);
+    }
+    
+
+    // FRONT SIDE STYLING
+    &__image {
+        height: 22rem;
+        background-size: cover;
+        background-position: center;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--first,
+        &--second,
+        &--third {
+            //background-blend-mode is used to apply different effects when there are multiple background-images present!!!
+            //it is a relatively new property and so should be used with browser specific prefixes !!!
+            background-blend-mode: screen;
+            -webkit-background-blend-mode: screen;
+        }
+
+        &--first {
+            background-image: linear-gradient(to bottom right, $color-secondary-light,
+            $color-secondary-dark);
+            // url(../img/nat-5.jpg);
+        }
+
+        &--second {
+            background-image: linear-gradient(to bottom right, $color-light,
+            $color-dark);
+            // url(../img/nat-6.jpg);
+        }
+
+        &--third {
+            background-image: linear-gradient(to bottom right, $color-tertiary-light,
+            $color-tertiary-dark);
+            // url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        color: $light-text-color;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        font-weight: 300;
+        text-align: right;
+        width: 65%;
+    }
+
+    //this span element is not really considered a part of the above div element and hence is treated as a different entity altogether
+    //for better css declaration selection 
+    &__heading--span {
+        padding: .7rem 1rem;
+        //if a line break ocuurs due to not enough width/space inside the parent element and the child/contained element has a line break 
+        //and the contained text has a line break because there is not enough width then the padding given to the child element does not 
+        //apply at the ends where the line break occurs and to apply the padding there we have to use "box-decoration-break: clone" property to basically
+        //clone the padding at those ends!!!since it is a new property it is not well supported by all the browser so you need to use the vendor
+        //prefixes!!! 
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
+        &--first {
+            background-image: linear-gradient(to bottom right,
+            rgba($color-secondary-light, 0.85),
+            rgba($color-secondary-dark, 0.85)); 
+        }
+         
+        &--second {
+            background-image: linear-gradient(to bottom right,
+            rgba($color-light, 0.85),
+            rgba($color-dark, 0.85));  
+        }
+
+        &--third {
+            background-image: linear-gradient(to bottom right,
+            rgba($color-tertiary-light, 0.85),
+            rgba($color-tertiary-dark, 0.85));  
+        }
+    }
+
+    &__list {
+        margin-top: 3rem;
+        
+        ul {
+            width: 75%;
+            margin: 0 auto;
+            list-style: none;
+            li {
+                text-align: center;
+                text-transform: capitalize;
+                color: $primary-text-color;
+                padding: 1rem;
+                font-size: 1.5rem;
+                
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-light-grey-2;
+                }
+            }
+        }
+    }
+    
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        text-align: center;
+    }
+
+    &__price {
+        color: $light-text-color;
+        text-transform: uppercase;
+        margin-bottom: 5rem;
+    }
+
+    &__price--only {
+        display: block;
+        font-size: 1.4rem;
+    }
+
+    &__price--amount {
+        display: block;
+        font-size: 6rem;
+        font-weight: 100;
+    }
+
+    @media only screen and (max-width: 56.25em),
+           only screen and (hover: none) {
+        height: auto;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+        border-radius: .5rem;
+        overflow: hidden;
+        
+        &__side {
+            height: auto;
+            position: relative;
+            border-radius: 0;
+            box-shadow: none;
+
+            &--front {
+                padding-bottom: 7rem;
+            }
+
+            &--back {
+                transform: rotateY(0);
+                clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+                -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+                margin-top: -7rem;
+            }
+        }
+
+        &:hover &__side--front{
+            transform: rotateY(0);
+        }
+        
+        &__cta {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: translate(0);
+            width: 100%;
+            text-align: center;
+            padding: 7rem 0 4rem 0;
+        }
+
+        &__price {
+            color: $light-text-color;
+            text-transform: uppercase;
+            margin-bottom: -1rem;
+        }
+
+        &__price--only {
+            display: block;
+            font-size: 1.4rem;
+        }
+
+        &__price--amount {
+            display: block;
+            font-size: 6rem;
+            font-weight: 100;
+        }
+    }
+
+}

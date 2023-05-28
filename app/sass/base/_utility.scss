@@ -1,0 +1,25 @@
+//utility classes: are used to do basic stuff such as cenetring an element, adding margin, padding, etc!!
+//these classes are solely used for these basic purposes and not to to do any project specific stuff!!
+//you give !important here even though it is bad practise to use !important in your code is because the reason we use 
+//utility classes in the first place is to apply that style and so it should not be overridden by another css declaration with a
+//higher specificity!! 
+.u-center { text-align: center !important; }
+
+.u-margin-bottom-big { 
+    margin-bottom: 8rem !important;
+
+    @include respond(tab-port) {
+        margin-bottom: 4rem !important; 
+    }
+}
+.u-margin-bottom-medium { margin-bottom: 4rem !important; }
+.u-margin-bottom-small { margin-bottom: 1.3rem !important; }
+
+.u-margin-top-big { 
+    margin-top: 8rem !important; 
+
+    @include respond(tab-port) {
+        margin-top: 6rem !important; 
+    }
+}
+.u-margin-top-huge { margin-top: 10rem !important; }

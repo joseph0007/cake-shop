@@ -1,0 +1,69 @@
+// GRID layout for the pages
+.row {
+    max-width: $row-maxwidth;
+    margin: 0 auto;
+    
+    &:not(:last-child) {
+        margin-bottom: $gutter-vertical;
+        @include respond(tab-port) {
+            margin-bottom: $gutter-vertical-small;
+        }
+    }
+
+    @include respond(tab-land) {
+        padding: 0 3rem;
+    }
+
+    @include respond(tab-port) {
+        width: $row-maxwidth-small;
+    }
+
+
+    [class^= "col-"] {
+        float: left;
+        &:not(:last-child) {
+            margin-right: $gutter-horizontal;
+
+            @include respond(tab-port) {
+                margin-right: 0;
+                margin-bottom: $gutter-vertical-small;
+            }
+        }
+
+        @include respond(tab-port) {
+            width: 100% !important;
+        }
+    }
+
+
+    .col-1-of-2 {
+        //calc() is a native-css math operations calculator function which is used to perform operations even on a mix of different units which can be
+        //very handy . you can also do these calculations in sass but since we use sass in the devevlopment phase and we dont know the
+        //actual layout information(such as viewport height, default font-size, etc ) we cannot calculate a mix of different units 
+        //as we do not have sufficient information. The native-css calc() takes place in the page rendering phase of the browser loading
+        //the webpage so it can perform calculations on different units.
+        width: calc((100% - #{$gutter-horizontal}) / 2);
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc((2 * (100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+    }
+
+    .col-2-of-4 {
+        width: calc((2 * (100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc((3 * (100% - 3 * #{$gutter-horizontal}) / 4) + (2 * #{$gutter-horizontal}));
+    }
+
+    @include clearfix;
+}

@@ -1,0 +1,133 @@
+/* ******************buttons***********************  */
+.btn {
+    &,
+    &:link,
+    &:visited {
+        display: inline-block;
+        padding: 1rem 2rem;
+        margin-top: 3rem;
+        text-decoration: none;
+        text-transform: uppercase;
+        position: relative;
+        font-size: $default-font-size;
+        border-radius: 10rem;
+        -webkit-border-radius: 10rem;
+        -moz-border-radius: 10rem;
+        -ms-border-radius: 10rem;
+        -o-border-radius: 10rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        // <button> styling
+        border: none;
+        cursor: pointer;
+    }
+    
+    &:hover {
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+        transform: translateY(-.3rem);
+        -webkit-transform: translateY(-.3rem);
+        -moz-transform: translateY(-.3rem);
+        -ms-transform: translateY(-.3rem);
+        -o-transform: translateY(-.3rem);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active {
+        outline: none;
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+        transform: translateX(-.1rem);
+        -webkit-transform: translateX(-.1rem);
+        -moz-transform: translateX(-.1rem);
+        -ms-transform: translateX(-.1rem);
+        -o-transform: translateX(-.1rem);
+    }
+    
+    /* psuedo classses are like child classes of the element whose psuedo class it is so we can set its height aand width  
+    in relation to its parent element  */
+    
+    &::after {
+        content: "";
+        /* give the display name same as the parent element in most cases in this case the parent element is "btn" */
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+    
+    &--animated {
+        /*animation: animation-name animation-duration animation-timing-function animation-delay*/
+        animation: moveInBottom 0.4s ease-out 0.75s;
+        /*this property sets the 0% of the animation even before the animation starts. This can be useful when you have delay set 
+        and the element will be in its initial state before the animation starts and to avoid this we set the initial state to be the 
+        0% of the animation!!!*/
+        animation-fill-mode: backwards;
+    }
+
+    // WHITE BUTTON
+    &--white {
+        background-color: $light-text-color;
+        color: $primary-text-color;
+        &::after {
+            background-color: $light-text-color;
+        }
+    }
+
+    // GREEN BUTTON
+    &--green {
+        background-color: $color-dark;
+        color: $light-text-color;
+        &::after {
+            background-color: $color-dark;
+        }
+    }
+    
+}
+
+
+
+.btn-text {
+    &:link,
+    &:visited {
+        display: inline-block;
+        font-size: $default-font-size;
+        color: $color-dark;
+        text-decoration: none;
+        text-transform: capitalize;
+        border-bottom: 1px solid $color-dark;
+        padding: 0 4px 2px 4px;
+        transition: all 0.2s;
+    }
+
+    &:active,
+    &:hover {
+        background-color: $color-dark;
+        color: $light-text-color;
+    }
+
+    &:hover {
+        //vertical length manipulation works only on block/inline-block
+        transform: translateY(-4px);
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    }
+
+    &:active {
+        transform: translateY(0);
+        box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+    }
+
+}
+
+// .btn-focus {
+//     &:focus {
+//         outline: 2px groove $color-dark;
+//     }
+// }

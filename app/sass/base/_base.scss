@@ -1,0 +1,73 @@
+/*************setting up**********************/
+/*
+Stylesheet for Natour.
+
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+*/
+/* we have to also select all of the psuedo elements with the universal selector so we have to add the after and before classes as well */
+*, 
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /*the bo-sizing property inherits the property value from the body element(we are basically forcing inheritance)
+    this can be useful if we are using some plug-ins that we dont want this property set to border-box*/
+    box-sizing: inherit;
+}
+
+body{
+    box-sizing: border-box;
+    padding: 2.5rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+html {
+    /* root font size is always set in the html element */
+    /*to set the root font-size value so that we can use relative units such as rem, em and make our page responsive
+    But we do not set the font-size value in pixels because it overrides the users default font-size value and the user will not 
+    be able to adjust the page to his liking, so we always set the root font-size in % to the default root font-size!!!!
+    default font-size = 16px ---> 62.5 * 16 -----> 10px*/
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+
+
+    //the order in which we write media queries matter because media queries does not have any importance or specificity so it checks the 
+    //source order and hence it applies the last style that it interprets!!
+    @include respond(big-desktop) {
+        font-size: 80%;
+    }
+
+    @include respond(tab-land) {
+        //media queries considers browsers default font-size as their parent font-size which makes sense because each media query acts as an 
+        //entirely new stylesheet for that screen(mediatype) width and so by default if we dont declare any font-size it takes the browsers
+        //default font-size and so by setting a font-size in % inside of media queries it acts as a root font-size for that screen width 
+        //and we can use rem on it!!!
+        font-size: 60%;
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%;
+    }
+
+    @include respond(phone) {
+        font-size: 40%;
+    }
+
+    @include respond(small-phone) {
+        font-size: 30%;
+    }
+}
+
+//stand-alone psuedo class ----> this psuedo class is linked directly to the browser that loads the webpage and styles the 
+//whatever is selected on the page!!
+::selection {
+    background-color: $color-light;
+    color: $light-text-color;
+}

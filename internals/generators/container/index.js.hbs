@@ -36,6 +36,9 @@ import saga from './saga';
 {{#if wantMessages}}
 import messages from './messages';
 {{/if}}
+{{#if wantSass}}
+import './sass.scss';
+{{/if}}
 
 export function {{ properCase name }}() {
   {{#if wantActionsAndReducer}}

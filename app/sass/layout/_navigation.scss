@@ -1,0 +1,167 @@
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+
+  &__list-item span {
+    margin-right: 1.5rem;
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    border-radius: 50%;
+    background-image: radial-gradient($color-light, $color-dark);
+    z-index: 1000;
+
+    //transform: scale(80);
+    transition: transform 0.8s cubic-bezier(0, 0.55, 0.45, 1);
+
+    @include respond(tab-port) {
+      top: 3.5rem;
+      right: 3.5rem;
+    }
+  }
+
+  &__checkbox-label {
+    display: inline-block;
+    height: 7rem;
+    width: 7rem;
+    position: fixed;
+    top: 6rem;
+    right: 6rem;
+    border-radius: 50%;
+    background-color: $light-text-color;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+    text-align: center;
+    z-index: 2000;
+
+    @include respond(tab-port) {
+      top: 3rem;
+      right: 3rem;
+    }
+  }
+
+  &__nav {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+
+    //the reason we cannot use display is because display cannot be animated because it does not has any numbers to perform overtime
+    //manipulation!!!
+    //display:none
+
+    visibility: hidden;
+    width: 0%;
+    opacity: 0;
+    //very cool way of solving the problem of the list elements getting cramped together at the end of the animation
+    //using a custom timing function to solve it is a very cool way
+    transition: all 0.8s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  }
+
+  &__list {
+    list-style: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__list-item {
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 2.5rem;
+    color: $light-text-color;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    background-image: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 50%,
+      $light-text-color 50%
+    );
+    //background-size: x-axis(width) y-axis(height)
+    background-size: 230% 100%;
+    transition: all 0.4s;
+
+    &:hover {
+      color: $color-dark;
+      //background-position: [right, left, bottom, top] x-axis(h-length), [right, left, bottom, top] y-axis(v-length);
+      background-position: 100%;
+      transform: scale(1.05) translateX(10%);
+    }
+  }
+
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    visibility: visible;
+    width: 100%;
+    opacity: 1;
+  }
+
+  &__icon {
+    &,
+    &::after,
+    &::before {
+      display: inline-block;
+      width: 3rem;
+      height: 0.3rem;
+      background-color: $color-dark-grey-3;
+      position: absolute;
+      transition: transform 0.3s;
+    }
+
+    & {
+      top: 3.5rem;
+      left: 2rem;
+    }
+
+    &::before {
+      content: "";
+      top: -1rem;
+      left: 0rem;
+    }
+
+    &::after {
+      content: "";
+      top: 1rem;
+      left: 0rem;
+    }
+  }
+
+  &__checkbox:checked + &__checkbox-label {
+    .navigation__icon {
+      //it also makes the opacity of its psuedo elements to 0;
+      //opacity: 0;
+      background-color: transparent;
+    }
+
+    .navigation__icon::after {
+      top: 0;
+      //transform-origin: left;
+      transform: rotate(-135deg);
+    }
+
+    .navigation__icon::before {
+      top: 0;
+      //transform-origin: left;
+      transform: rotate(135deg);
+    }
+  }
+}

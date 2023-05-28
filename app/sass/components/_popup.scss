@@ -1,0 +1,214 @@
+.popup {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, 0.8);
+    z-index: 9999;
+
+    //alt for display:none which is animatable!!
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s;
+
+    //backdrop-filter is used to blur the background of an element and filter is used to blur the element itself!!!
+    //@media use "," as or ||| @supports use "or" as or 
+    @supports (backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px)) {
+        background-color: rgba($color-black, 0.2);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+    }
+    
+    &__content {
+        display: table;
+        width: 75%;
+        background-color: $light-text-color;
+        box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+        border-radius: 3px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.25);
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.5s 0.3s;
+
+        @media only screen and (max-width: 87.5em) {
+            width: 85vw;
+            height: 60vh;
+
+        }
+    }
+
+    &__left {
+        display: table-cell;
+        width: 33.333333%;
+
+        // @include respond(tab-land) {
+        //     display: block;
+        //     width: 100%;
+        //     height: 35vh;
+        // }
+
+        // @include respond(phone) {
+        //     height: auto;
+        // }
+        
+        // @include respond-height(small-phone) {
+        //     display: none;
+        // }
+            
+        @media only screen and (max-width: 87.5em) {
+           width: 100%;
+           display: block;
+           position: absolute;
+           top: 0;
+           left: 0;
+           z-index: 1;
+        }
+
+    }
+
+    &__right {
+        display: table-cell;
+        width: 66.666667%;  
+        vertical-align: middle;
+        padding: 3rem;
+
+        // @include respond(tab-land) {
+        //     display: block;
+        //     width: 100%;
+        //     text-align: center;
+        //     height: auto;
+        //     overflow-y: scroll;
+        // }
+
+        @media only screen and (max-width: 87.5em) {
+            background-color: rgba($light-text-color, 0.9);
+            width: 100%;
+            border-radius: 5px;
+            padding: 5rem;
+            text-align: center;
+            z-index: 2;
+
+            & .heading-secondary {
+                margin-top: 0;
+                font-size: 3rem;
+            }
+        }
+
+        & .heading-secondary {
+            margin-top: 0;
+
+            @include respond(tab-land) {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        transform: translateX(-1px);
+
+        // @include respond(tab-land) {
+        //     display: inline-block;
+        //     width: 49.8%;
+        //     height: 100%;
+        //     transform: scale(1.01);
+        // }
+
+        // @include respond(phone) {
+        //     display: block;
+        //     width: 101%;
+        //     height: auto;
+        //     transform: scale(1);
+        // }
+
+        // &:last-child {
+        //     @include respond(tab-land) {
+        //         display: inline-block;
+        //     }
+
+        //     @include respond(phone) {
+        //         display: none;
+        //     }
+        // }
+
+        @media only screen and (max-width: 87.5em) {
+            &:last-child {
+                @include respond(tab-land) {
+                    display: none;
+                }
+            }
+            transform: translateX(0);
+            opacity: 0.2;
+        }
+
+    }
+
+    &__paragraph {
+        //requires prefixes
+        column-count: 2;
+        column-gap: 4rem; //by default 1em;
+        column-span: 2;
+        
+        //column-rule: 1px solid #333;
+
+        //requires prefixes
+        hyphens: auto;
+
+        @media only screen and (max-width: 87.5em) {
+            column-count: 1;
+            column-gap: 0em;
+            column-span: 0;
+            font-size: 2.1rem;
+        }
+
+        @include respond(tab-land) {
+            text-align: left;
+        }
+
+
+    }
+
+    &__close {
+        &:link, 
+        &:visited {
+            position: absolute;
+            top: 3.5rem;
+            right: 3.5rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: $primary-text-color;
+            text-decoration: none;
+            line-height: 0;
+            transition: all 0.2s;
+
+            @media only screen and (max-width: 87.5em) {
+                z-index: 3;
+            }
+
+            @include respond(tab-land) {
+                color: $color-black;
+            }
+        }
+
+        &:hover {
+            color: $color-dark;
+        }
+    }
+    
+    //the :target psuedo class is called when the element is the target of some anchor tag in the page or outside the page
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+}
