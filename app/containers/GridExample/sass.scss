@@ -1,0 +1,66 @@
+/*
+ * GridExample Messages
+ *
+ * This contains all the additional styles for the GridExample container.
+ */
+$color-dark-grey-2: #999;
+
+.grid {
+
+  &-container {
+    display: grid;
+    gap: .5rem;
+    min-height: 100vh;
+
+    // basically auto-fill and auto-fit both create the same number of columns but the difference is that
+    // auto-fill does not collapse the cell if it is empty on the other hand auto-fit does collapse the 
+    // cell if is empty and distributes the space amongst other non empty cell.
+  
+    grid-template-columns: 10rem repeat(auto-fit, minmax(25rem, 1fr));
+    // grid-template-columns: 10rem repeat(auto-fill, minmax(25rem, 1fr));
+    grid-template-rows: repeat(6, 1fr);
+  }
+  
+  &-item {
+    border: 1px solid #777;
+    box-shadow: 1px 1px 1px #777;
+    text-align: center;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &-item.color1 {
+    grid-column-start: 2;
+    // to see the effect of auto-fill and auto-fit you need to set the end value to non -1 number.
+    grid-column-end: 5;
+    grid-row: 1 / 2;
+  
+    background-color: $color-dark-grey-2;
+  }
+  
+  &-item.color4 {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row: 6 / -1;
+  
+    background-color: $color-dark-grey-2;
+  }
+  
+  &-item.color2 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 1 / -1;
+  
+    background-color: $color-dark-grey-2;
+  }
+  
+  &-item.color3 {
+    grid-column-start: 2;
+    grid-column-end: 5;
+    grid-row: 2 / -2;
+  
+    background-color: $color-dark-grey-2;
+  }
+}

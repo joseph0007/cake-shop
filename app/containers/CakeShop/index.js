@@ -11,6 +11,8 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import Header from '../../components/header/header';
+import Footer from '../../components/footer/footer';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
@@ -20,26 +22,34 @@ import saga from './saga';
 import messages from './messages';
 import './sass.scss';
 
+export function CakeShopWrapper({ children }) {
+  return (
+    <>
+      <Header />
+      <div className='content'>
+        {children}
+      </div>
+      <Footer />
+    </>
+  )
+}
+
 export function CakeShop() {
   useInjectReducer({ key: 'cakeShop', reducer });
   useInjectSaga({ key: 'cakeShop', saga });
 
   return (
-    <div>
+    <CakeShopWrapper>
       <Helmet>
         <title>CakeShop</title>
         <meta name="description" content="Description of CakeShop" />
       </Helmet>
       
-      <div className='row'>
-        <div className='col-1-of-2'>
-          <FormattedMessage {...messages.header} />
-        </div>
-        <div className='col-1-of-2'>
-          <FormattedMessage {...messages.header} />
-        </div>
+      <div className='heading-tertiary'>
+        <FormattedMessage {...messages.header} />
       </div>
-    </div>
+      
+    </CakeShopWrapper>
   );
 }
 

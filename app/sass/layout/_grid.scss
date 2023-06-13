@@ -1,69 +1,82 @@
-// GRID layout for the pages
-.row {
-    max-width: $row-maxwidth;
-    margin: 0 auto;
+// GRID layout for the pages (FLOAT)
+// .row {
+//     max-width: $row-maxwidth; // 1140px
+//     margin: 0 auto;
     
-    &:not(:last-child) {
-        margin-bottom: $gutter-vertical;
-        @include respond(tab-port) {
-            margin-bottom: $gutter-vertical-small;
-        }
-    }
+//     &:not(:last-child) {
+//         margin-bottom: $gutter-vertical;
+//         @include respond(tab-port) {
+//             margin-bottom: $gutter-vertical-small;
+//         }
+//     }
 
-    @include respond(tab-land) {
-        padding: 0 3rem;
-    }
+//     @include respond(tab-land) {
+//         padding: 0 3rem;
+//     }
 
-    @include respond(tab-port) {
-        width: $row-maxwidth-small;
-    }
-
-
-    [class^= "col-"] {
-        float: left;
-        &:not(:last-child) {
-            margin-right: $gutter-horizontal;
-
-            @include respond(tab-port) {
-                margin-right: 0;
-                margin-bottom: $gutter-vertical-small;
-            }
-        }
-
-        @include respond(tab-port) {
-            width: 100% !important;
-        }
-    }
+//     @include respond(tab-port) {
+//         width: $row-maxwidth-small;
+//     }
 
 
-    .col-1-of-2 {
-        //calc() is a native-css math operations calculator function which is used to perform operations even on a mix of different units which can be
-        //very handy . you can also do these calculations in sass but since we use sass in the devevlopment phase and we dont know the
-        //actual layout information(such as viewport height, default font-size, etc ) we cannot calculate a mix of different units 
-        //as we do not have sufficient information. The native-css calc() takes place in the page rendering phase of the browser loading
-        //the webpage so it can perform calculations on different units.
-        width: calc((100% - #{$gutter-horizontal}) / 2);
-    }
+//     [class^= "col-"] {
+//         float: left;
+//         &:not(:last-child) {
+//             margin-right: $gutter-horizontal;
 
-    .col-1-of-3 {
-        width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
-    }
+//             @include respond(tab-port) {
+//                 margin-right: 0;
+//                 margin-bottom: $gutter-vertical-small;
+//             }
+//         }
 
-    .col-2-of-3 {
-        width: calc((2 * (100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
-    }
+//         @include respond(tab-port) {
+//             width: 100% !important;
+//         }
+//     }
 
-    .col-1-of-4 {
-        width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
-    }
 
-    .col-2-of-4 {
-        width: calc((2 * (100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
-    }
+//     .col-1-of-2 {
+//         //calc() is a native-css math operations calculator function which is used to perform operations even on a mix of different units which can be
+//         //very handy . you can also do these calculations in sass but since we use sass in the devevlopment phase and we dont know the
+//         //actual layout information(such as viewport height, default font-size, etc ) we cannot calculate a mix of different units 
+//         //as we do not have sufficient information. The native-css calc() takes place in the page rendering phase of the browser loading
+//         //the webpage so it can perform calculations on different units.
+//         width: calc((100% - #{$gutter-horizontal}) / 2);
+//     }
 
-    .col-3-of-4 {
-        width: calc((3 * (100% - 3 * #{$gutter-horizontal}) / 4) + (2 * #{$gutter-horizontal}));
-    }
+//     .col-1-of-3 {
+//         width: calc((100% - 2 * #{$gutter-horizontal}) / 3);
+//     }
 
-    @include clearfix;
+//     .col-2-of-3 {
+//         width: calc((2 * (100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal});
+//     }
+
+//     .col-1-of-4 {
+//         width: calc((100% - 3 * #{$gutter-horizontal}) / 4);
+//     }
+
+//     .col-2-of-4 {
+//         width: calc((2 * (100% - 3 * #{$gutter-horizontal}) / 4) + #{$gutter-horizontal});
+//     }
+
+//     .col-3-of-4 {
+//         width: calc((3 * (100% - 3 * #{$gutter-horizontal}) / 4) + (2 * #{$gutter-horizontal}));
+//     }
+
+//     @include clearfix;
+// }
+
+// // GRID layout for the pages (GRID)
+.row {
+    display: grid;
+
+    grid-template-rows: [header-start] 80vh [header-end center-start] repeat(auto-fit, minmax(40rem, min-content)) [center-end footer-start] 40vh [footer-end];
+    grid-template-columns: [column-start] repeat(auto-fit, [col-start] minmax(5rem, 1fr) [col-end]) [column-end];
+}
+
+.content {
+    grid-row: center-start / center-end;
+    grid-column: column-start / column-end;
 }

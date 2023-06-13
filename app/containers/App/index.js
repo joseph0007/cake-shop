@@ -13,6 +13,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import CakeShopPage from 'containers/CakeShop/Loadable';
+import GridExample from 'containers/GridExample';
 import 'sass/main.scss';
 
 // import GlobalStyle from '../../global-styles';
@@ -20,10 +21,11 @@ import 'sass/main.scss';
 
 export default function App() {
   return (
-    <div>
+    <div className='row'>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/cake" component={CakeShopPage} />
+        <Route exact path="/grid" component={GridExample} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

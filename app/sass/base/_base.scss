@@ -14,7 +14,7 @@ Dark green: #28b485
 *::before {
     margin: 0;
     padding: 0;
-    /*the bo-sizing property inherits the property value from the body element(we are basically forcing inheritance)
+    /*the box-sizing property inherits the property value from the body element(we are basically forcing inheritance)
     this can be useful if we are using some plug-ins that we dont want this property set to border-box*/
     box-sizing: inherit;
 }

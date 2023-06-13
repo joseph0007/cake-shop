@@ -97,3 +97,12 @@
     }
 
 }
+
+.cake {
+    background-image: linear-gradient(0deg,
+    rgba($light-text-color, 0.3) 0%,
+    rgba($light-text-color, 0.3) 100%,
+    transparent 50%),
+    url(../images/cake.jpg);
+    min-height: 90vh;
+}
