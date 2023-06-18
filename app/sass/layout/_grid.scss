@@ -72,11 +72,8 @@
 .row {
     display: grid;
 
-    grid-template-rows: [header-start] 95vh [header-end center-start] repeat(auto-fit, minmax(40rem, min-content)) [center-end footer-start] 40vh [footer-end];
+    // auto-fit
+    grid-template-rows: [header-start] 95vh [header-end center-start] repeat(1, minmax(40rem, min-content)) [center-end footer-start] 40vh [footer-end];
     grid-template-columns: [column-start] repeat(auto-fit, [col-start] minmax(5rem, 1fr) [col-end]) [column-end];
-}
-
-.content {
-    grid-row: center-start / center-end;
-    grid-column: column-start / column-end;
+    row-gap: .75rem;
 }

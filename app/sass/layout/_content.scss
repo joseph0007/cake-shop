@@ -1,0 +1,7 @@
+.content {
+  grid-row: center-start / center-end;
+  grid-column: column-start / column-end;
+
+  background-color: $color-light-grey-1;
+  box-shadow: $box-shadow;
+}
