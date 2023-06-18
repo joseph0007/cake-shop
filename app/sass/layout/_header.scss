@@ -61,8 +61,81 @@
 // }
 
 .header {
-  background-color: red;
+  // background-color: $color-medium;linear-gradient(to bottom right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1), url(/5e1d96a01fbdd523946c9f1a871d9efd.jpg))
 
   grid-row: header-start / header-end;
   grid-column: column-start / column-end;
+
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  // position: relative;
+
+  &__icon{
+    position: fixed;
+    border-radius: 50%;
+    overflow: hidden;
+    top: 3.5rem;
+    left: 3.5rem;
+    box-shadow: 0.4rem 0.4rem 0.6rem 0 rgba($color-black, 0.3);
+    // object-fit: contain;
+
+    // width: 3rem;
+    // height: 3rem;
+
+    &--img {
+      object-fit: contain;
+      width: 5rem;
+      height: 5rem;
+
+      @include respond(tab-port) {
+        width: 7rem;
+        height: 7rem;
+      }
+    }
+  }
+
+  &__image {
+    background-image: linear-gradient(to right, rgba($color-black, 0.5), rgba($color-black, 0.5)), url(../images/cake-unsplash-1.jpg);
+    background-position: center;
+    background-size: cover;
+
+    box-shadow: 0.4rem 0.4rem 0.6rem 0 rgba($color-black, 0.3);
+  }
+
+  &__title {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 9rem;
+    color: #fff;
+
+    @include respond(tab-port) {
+      font-size: 7rem;
+    }
+
+    @include respond(phone) {
+      font-size: 5.5rem;
+    }
+    
+    @include respond(small-phone) {
+      font-size: 5rem;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+
+    &--1 {
+      grid-column: 3 / 7;
+      grid-row: 3 / 4;
+
+      @include respond(tab-port) {
+        grid-row: 3 / 4;
+      }
+
+      transform: rotate(-10deg);
+    }
+  }
 }

@@ -21,10 +21,13 @@ Dark green: #28b485
 
 body{
     box-sizing: border-box;
-    padding: 2.5rem;
+    padding: 1.25rem;
+    // border: 2px solid $color-medium;
+    // border-style: inset;
 
     @include respond(tab-port) {
         padding: 0;
+        border: none;
     }
 }
 
