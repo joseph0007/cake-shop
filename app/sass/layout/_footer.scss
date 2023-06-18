@@ -81,3 +81,10 @@
 
 //     @include clearfix;
 // }
+
+.footer {
+  background-color: green;
+
+  grid-row: footer-start / footer-end;
+  grid-column: column-start / column-end;
+}

@@ -59,3 +59,10 @@
 //         text-align: center;
 //     }
 // }
+
+.header {
+  background-color: red;
+
+  grid-row: header-start / header-end;
+  grid-column: column-start / column-end;
+}
